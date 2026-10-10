@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinoj Mart - Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f3f3f3;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: #131921;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff9900;
+        }
+
+        .cart {
+            font-size: 18px;
+        }
+
+        /* Login Container */
+        .container {
+            width: 380px;
+            max-width: 90%;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #222;
+        }
+
+        /* User Type */
+        .user-type {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .user-type button {
+            width: 50%;
+            padding: 12px;
+            border: 1px solid #aaa;
+            background: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .user-type button.active {
+            background: #ff9900;
+            border-color: #ff9900;
+            color: black;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0 6px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #999;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .login-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 13px;
+            background: #ff9900;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #e68a00;
+        }
+
+        .forgot {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            color: #0066c0;
+            text-decoration: none;
+        }
+
+        .signup {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .signup a {
+            color: #0066c0;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background: #131921;
+            color: white;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Vinoj Mart</div>
+    <div class="cart">🛒 Cart</div>
+</header>
+
+<div class="container">
+
+    <h2>Login to Vinoj Mart</h2>
+
+    <div class="user-type">
+        <button id="buyerBtn" class="active" onclick="selectUser('Buyer')">
+            Buyer
+        </button>
+
+        <button id="sellerBtn" onclick="selectUser('Seller')">
+            Seller
+        </button>
+    </div>
+
+    <p id="loginType" style="text-align:center; margin-bottom:15px;">
+        Buyer Login
+    </p>
+
+    <form onsubmit="login(event)">
+
+        <label>Email or Mobile Number</label>
+        <input type="text" id="email" placeholder="Enter email or mobile" required>
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+
+        <button type="submit" class="login-btn">
+            Login
+        </button>
+
+    </form>
+
+    <a href="#" class="forgot">Forgot Password?</a>
+
+    <div class="signup">
+        New to Vinoj Mart?
+        <br><br>
+        <a href="#">Create your account</a>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Vinoj Mart | All Rights Reserved
+</footer>
+
+<script>
+
+    let selectedUser = "Buyer";
+
+    function selectUser(type) {
+
+        selectedUser = type;
+
+        document.getElementById("loginType").innerText =
+            type + " Login";
+
+        document.getElementById("buyerBtn")
+            .classList.remove("active");
+
+        document.getElementById("sellerBtn")
+            .classList.remove("active");
+
+        if (type === "Buyer") {
+            document.getElementById("buyerBtn")
+                .classList.add("active");
+        } else {
+            document.getElementById("sellerBtn")
+                .classList.add("active");
+        }
+    }
+
+    function login(event) {
+
+        event.preventDefault();
+
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        alert(
+            selectedUser + " Login\n\n" +
+            "Email/Mobile: " + email
+        );
+    }
+
+</script>
+
+</body>
+</html>
